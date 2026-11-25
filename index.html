@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منصة الأحياء | الفيديوهات والشرح للطلاب</title>
+  <title>منصة مستر ماجد علي | حوت الأحياء</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #13081c;
-      --surface: #1f0e2e;
-      --surface-2: #2b1440;
-      --purple: #9333ea;
-      --purple-light: #c084fc;
-      --red: #e11d48;
-      --red-soft: rgba(225, 29, 72, 0.16);
-      --text: #fdf4ff;
-      --muted: #d8b4fe;
-      --border: rgba(192, 132, 252, 0.25);
+      --bg: #f0f7ff;
+      --surface: #ffffff;
+      --surface-soft: #e6f4f1;
+      --blue: #0284c7;
+      --blue-dark: #0369a1;
+      --blue-deep: #0c4a6e;
+      --green: #10b981;
+      --green-dark: #059669;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #bae6fd;
+      --shadow: 0 12px 30px rgba(2, 132, 199, 0.12);
     }
 
     *, *::before, *::after {
@@ -36,9 +38,9 @@
       direction: rtl;
       font-family: 'Cairo', sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(147, 51, 234, 0.28) 0%, transparent 45%),
-        radial-gradient(circle at bottom left, rgba(225, 29, 72, 0.22) 0%, transparent 45%),
-        linear-gradient(180deg, #160921 0%, #110719 100%);
+        radial-gradient(circle at top right, rgba(2, 132, 199, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+        linear-gradient(180deg, #eff6ff 0%, #ffffff 55%, #ecfdf5 100%);
       color: var(--text);
       min-height: 100vh;
       padding-bottom: 88px;
@@ -46,7 +48,7 @@
       overflow-x: hidden;
     }
 
-    /* أشكال أحياء خفيفة في الخلفية */
+    /* أشكال أحياء وحوت خفيفة في الخلفية */
     .bio-bg-layer {
       position: fixed;
       inset: 0;
@@ -59,15 +61,14 @@
 
     .bio-glyph {
       position: absolute;
-      font-size: 3.2rem;
-      filter: grayscale(15%);
+      font-size: 3.4rem;
     }
 
-    .g1 { top: 8%; right: 6%; transform: rotate(-12deg); }
-    .g2 { top: 22%; left: 8%; font-size: 3.8rem; transform: rotate(15deg); }
-    .g3 { top: 48%; right: 4%; font-size: 3.5rem; transform: rotate(8deg); }
-    .g4 { top: 66%; left: 7%; font-size: 3.4rem; transform: rotate(-18deg); }
-    .g5 { bottom: 16%; right: 12%; font-size: 3rem; }
+    .g1 { top: 7%; right: 6%; transform: rotate(-10deg); }
+    .g2 { top: 20%; left: 7%; font-size: 4rem; transform: rotate(12deg); }
+    .g3 { top: 46%; right: 4%; font-size: 3.6rem; transform: rotate(8deg); }
+    .g4 { top: 65%; left: 6%; font-size: 3.5rem; transform: rotate(-14deg); }
+    .g5 { bottom: 15%; right: 11%; font-size: 3.2rem; }
 
     .wrap {
       width: min(760px, 94%);
@@ -76,87 +77,123 @@
       z-index: 1;
     }
 
-    /* Avatar helpers */
-    .avatar-ring {
+    /* إطار صورة المستر */
+    .teacher-frame {
       position: relative;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--purple), var(--red));
-      padding: 3px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      padding: 4px;
       display: grid;
       place-items: center;
-      overflow: hidden;
       flex-shrink: 0;
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25);
     }
 
-    .avatar-ring img {
+    .teacher-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
       border-radius: 50%;
       display: block;
+      background: #ffffff;
     }
 
-    .avatar-fallback {
+    .teacher-fallback {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--purple), var(--red));
+      background: linear-gradient(135deg, var(--blue), var(--green));
       color: #ffffff;
       display: grid;
       place-items: center;
       font-weight: 900;
     }
 
-    /* Login Screen */
+    .whale-pin {
+      position: absolute;
+      bottom: -2px;
+      left: -2px;
+      background: #ffffff;
+      border: 2px solid var(--green);
+      border-radius: 999px;
+      padding: 2px 7px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      color: var(--blue-deep);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    /* شاشة تسجيل الدخول (من بره) */
     .login-screen {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 14px;
+      padding: 22px 14px;
       position: relative;
       z-index: 1;
     }
 
     .login-card {
-      width: min(430px, 100%);
-      background: linear-gradient(180deg, #251038 0%, #180a24 100%);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 24px 20px;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.5);
+      width: min(450px, 100%);
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 26px 20px;
+      box-shadow: 0 20px 45px rgba(2, 132, 199, 0.16);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--blue), var(--green));
     }
 
     .login-photo {
-      width: 86px;
-      height: 86px;
-      margin: 0 auto 10px;
-      font-size: 2rem;
+      width: 118px;
+      height: 118px;
+      margin: 4px auto 12px;
+      font-size: 2.4rem;
     }
 
     .bio-mini-strip {
       display: inline-flex;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      padding: 4px 12px;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #e0f2fe, #d1fae5);
+      border: 1px solid #a7f3d0;
+      color: var(--blue-deep);
+      padding: 4px 14px;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 800;
       margin-bottom: 10px;
     }
 
     .login-card h1 {
       font-size: 1.32rem;
       font-weight: 900;
-      margin-bottom: 4px;
-      color: #ffffff;
+      line-height: 1.45;
+      margin-bottom: 6px;
+      color: var(--blue-deep);
     }
 
-    .login-card p {
-      font-size: 0.85rem;
-      color: var(--muted);
+    .login-tagline {
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      padding: 6px 12px;
+      border-radius: 12px;
       margin-bottom: 16px;
     }
 
@@ -175,64 +212,73 @@
 
     .field-box input {
       width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
       border-radius: 12px;
       padding: 11px 13px;
-      color: #ffffff;
+      color: var(--text);
       font-family: inherit;
       font-size: 0.92rem;
     }
 
     .field-box input:focus {
       outline: none;
-      border-color: var(--red);
+      border-color: var(--blue);
+      background: #ffffff;
     }
 
     .login-err {
       display: none;
-      background: rgba(225, 29, 72, 0.2);
-      border: 1px solid rgba(225, 29, 72, 0.55);
-      color: #fecdd3;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
       padding: 9px 12px;
       border-radius: 10px;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 12px;
     }
 
     .primary-grad-btn {
       width: 100%;
-      background: linear-gradient(135deg, var(--purple), var(--red));
+      background: linear-gradient(135deg, var(--blue), var(--green));
       color: #ffffff;
       border: none;
       border-radius: 13px;
       padding: 12px;
       font-family: inherit;
       font-weight: 900;
-      font-size: 0.96rem;
+      font-size: 0.98rem;
       cursor: pointer;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
     }
 
     .login-note {
       margin-top: 14px;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: var(--muted);
-      line-height: 1.55;
-      background: rgba(255, 255, 255, 0.04);
+      line-height: 1.6;
+      background: #f0f9ff;
+      border: 1px solid var(--border);
       padding: 9px 11px;
-      border-radius: 10px;
+      border-radius: 11px;
     }
 
-    /* Topbar */
+    .login-note a {
+      color: var(--blue-dark);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    /* الشريط العلوي داخل المنصة */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(19, 8, 28, 0.93);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 0;
+      border-bottom: 1.5px solid var(--border);
+      padding: 9px 0;
     }
 
     .topbar-inner {
@@ -249,26 +295,28 @@
     }
 
     .mini-avatar {
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
+      padding: 2.5px;
       font-size: 1.2rem;
     }
 
     .brand-mini h2 {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 900;
-      color: #ffffff;
+      color: var(--blue-deep);
     }
 
     .brand-mini p {
       font-size: 0.76rem;
-      color: var(--muted);
+      font-weight: 700;
+      color: var(--green-dark);
     }
 
     .logout-btn {
-      background: var(--red-soft);
-      border: 1px solid rgba(225, 29, 72, 0.45);
-      color: #fecdd3;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
       padding: 7px 12px;
       border-radius: 10px;
       font-family: inherit;
@@ -277,39 +325,32 @@
       cursor: pointer;
     }
 
-    /* Hero Card */
+    /* كارت المستر الكبير داخل المنصة */
     .hero-card {
       margin-top: 14px;
-      background: linear-gradient(180deg, #28113d 0%, #190a27 100%);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 20px 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 65%, #ecfdf5 100%);
+      border: 1.5px solid var(--border);
+      border-radius: 22px;
+      padding: 22px 16px;
       text-align: center;
-    }
-
-    .hero-teacher-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
+      box-shadow: var(--shadow);
     }
 
     .hero-avatar {
-      width: 96px;
-      height: 96px;
-      font-size: 2.2rem;
-      box-shadow: 0 10px 24px rgba(225, 29, 72, 0.25);
+      width: 124px;
+      height: 124px;
+      margin: 0 auto 12px;
+      font-size: 2.5rem;
     }
 
     .pill-line {
       display: inline-block;
-      background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(225, 29, 72, 0.3));
-      border: 1px solid var(--border);
-      color: #f5d0fe;
+      background: linear-gradient(135deg, #e0f2fe, #d1fae5);
+      border: 1px solid #a7f3d0;
+      color: var(--blue-deep);
       padding: 4px 14px;
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 800;
       margin-bottom: 8px;
     }
@@ -317,14 +358,14 @@
     .hero-title {
       font-size: 1.42rem;
       font-weight: 900;
-      color: #ffffff;
+      color: var(--blue-deep);
       margin-bottom: 6px;
     }
 
     .hero-sub {
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 700;
+      color: var(--green-dark);
+      font-size: 0.95rem;
+      font-weight: 800;
       margin-bottom: 12px;
     }
 
@@ -336,34 +377,35 @@
     }
 
     .hero-tag {
-      background: var(--surface-2);
+      background: #ffffff;
       border: 1px solid var(--border);
-      color: #ffffff;
+      color: var(--blue-deep);
       padding: 5px 11px;
       border-radius: 10px;
       font-size: 0.78rem;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    /* Search & Category Pills */
+    /* البحث والتبويبات */
     .search-box {
       margin-top: 14px;
     }
 
     .search-box input {
       width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: #ffffff;
+      border: 1.5px solid var(--border);
       border-radius: 13px;
       padding: 11px 14px;
-      color: #ffffff;
+      color: var(--text);
       font-family: inherit;
       font-size: 0.92rem;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.06);
     }
 
     .search-box input:focus {
       outline: none;
-      border-color: var(--red);
+      border-color: var(--green);
     }
 
     .cat-pills {
@@ -374,24 +416,24 @@
     }
 
     .cat-pill {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      color: var(--blue-deep);
       padding: 8px 6px;
       border-radius: 11px;
       font-family: inherit;
       font-weight: 800;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       cursor: pointer;
     }
 
     .cat-pill.active {
-      background: linear-gradient(135deg, var(--purple), var(--red));
+      background: linear-gradient(135deg, var(--blue), var(--green));
       color: #ffffff;
       border-color: transparent;
     }
 
-    /* Lessons List */
+    /* كروت الحصص */
     .lessons-head {
       display: flex;
       align-items: center;
@@ -402,29 +444,26 @@
     .lessons-head h3 {
       font-size: 1.12rem;
       font-weight: 900;
+      color: var(--blue-deep);
     }
 
     .lessons-head span {
-      background: var(--red-soft);
-      border: 1px solid rgba(225, 29, 72, 0.4);
-      color: #fecdd3;
+      background: #d1fae5;
+      border: 1px solid #6ee7b7;
+      color: #065f46;
       padding: 2px 10px;
       border-radius: 999px;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 800;
     }
 
     .lesson-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
       padding: 14px;
-      margin-bottom: 12px;
-      transition: background 0.18s ease;
-    }
-
-    .lesson-card:hover {
-      background: var(--surface-2);
+      margin-bottom: 13px;
+      box-shadow: var(--shadow);
     }
 
     .lesson-top {
@@ -435,8 +474,23 @@
       margin-bottom: 8px;
     }
 
+    .lesson-teacher-mini {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lesson-teacher-mini img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 1.5px solid var(--green);
+    }
+
     .unit-chip {
-      background: linear-gradient(135deg, var(--purple), var(--red));
+      background: linear-gradient(135deg, var(--blue), var(--green));
       color: #ffffff;
       font-size: 0.74rem;
       font-weight: 800;
@@ -445,32 +499,31 @@
     }
 
     .bio-badge {
-      font-size: 1.05rem;
-      opacity: 0.9;
+      font-size: 1.15rem;
     }
 
     .lesson-title {
-      font-size: 1.02rem;
+      font-size: 1.03rem;
       font-weight: 900;
-      color: #ffffff;
+      color: var(--blue-deep);
       margin-bottom: 4px;
     }
 
     .lesson-desc {
-      font-size: 0.84rem;
+      font-size: 0.85rem;
       color: var(--muted);
       margin-bottom: 12px;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .video-wrap {
       position: relative;
       width: 100%;
       padding-top: 56.25%;
-      border-radius: 12px;
+      border-radius: 13px;
       overflow: hidden;
-      background: #0b0410;
-      border: 1px solid var(--border);
+      background: #0f172a;
+      border: 1.5px solid var(--border);
       margin-bottom: 10px;
     }
 
@@ -492,9 +545,9 @@
 
     .watch-ext-btn {
       display: inline-block;
-      background: var(--surface-2);
+      background: #f0f9ff;
       border: 1px solid var(--border);
-      color: #f5d0fe;
+      color: var(--blue-dark);
       text-decoration: none;
       padding: 7px 13px;
       border-radius: 10px;
@@ -504,7 +557,7 @@
 
     .wa-lesson-btn {
       display: inline-block;
-      background: linear-gradient(135deg, var(--purple), var(--red));
+      background: linear-gradient(135deg, var(--blue), var(--green));
       color: #ffffff;
       text-decoration: none;
       padding: 7px 13px;
@@ -513,16 +566,16 @@
       font-weight: 800;
     }
 
-    /* Bottom Nav */
+    /* الشريط السفلي الثابت */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       z-index: 50;
-      background: rgba(19, 8, 28, 0.96);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(10px);
-      border-top: 1px solid var(--border);
+      border-top: 1.5px solid var(--border);
       padding: 8px 0;
     }
 
@@ -553,38 +606,40 @@
 
     .nav-tab.active {
       color: #ffffff;
-      background: linear-gradient(135deg, rgba(147, 51, 234, 0.35), rgba(225, 29, 72, 0.35));
+      background: linear-gradient(135deg, var(--blue), var(--green));
     }
   </style>
 </head>
 <body>
 
-  <!-- أشكال أحياء في الخلفية -->
+  <!-- أشكال أحياء وحوت في الخلفية -->
   <div class="bio-bg-layer" aria-hidden="true">
-    <span class="bio-glyph g1">🧬</span>
-    <span class="bio-glyph g2">🔬</span>
-    <span class="bio-glyph g3">🧪</span>
-    <span class="bio-glyph g4">🦠</span>
+    <span class="bio-glyph g1">🐋</span>
+    <span class="bio-glyph g2">🧬</span>
+    <span class="bio-glyph g3">🔬</span>
+    <span class="bio-glyph g4">🧪</span>
     <span class="bio-glyph g5">🌿</span>
   </div>
 
-  <!-- شاشة تسجيل الدخول -->
+  <!-- شاشة تسجيل الدخول (من بره) -->
   <section class="login-screen" id="loginScreen">
     <div class="login-card">
-      <div class="avatar-ring login-photo">
-        <img src="teacher.jpg" alt="صورة المستر" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-        <div class="avatar-fallback" style="display:none;">🧬</div>
+      <div class="teacher-frame login-photo">
+        <img src="teacher.jpg" alt="مستر ماجد علي - حوت الأحياء" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+        <div class="teacher-fallback" style="display:none;">🐋</div>
+        <span class="whale-pin">🐋 حوت الأحياء</span>
       </div>
 
       <div class="bio-mini-strip" aria-hidden="true">
         <span>🧬</span>
         <span>🔬</span>
         <span>🧪</span>
+        <span>🌿</span>
         <span>🦠</span>
       </div>
 
-      <h1>منصة الأحياء التعليمية</h1>
-      <p>أدخل اسم المستخدم وكلمة المرور لمشاهدة حصص وشرح الأحياء</p>
+      <h1>أهلاً بك في منصة مستر ماجد علي حوت الأحياء</h1>
+      <p class="login-tagline">هتفهم كل حاجة في المنهج بشرح مبسط 🧬✨</p>
 
       <div class="login-err" id="loginErr">اسم المستخدم أو كلمة المرور غير صحيحة</div>
 
@@ -598,10 +653,11 @@
         <input type="password" id="passInput" placeholder="••••••••" autocomplete="current-password" />
       </div>
 
-      <button type="button" class="primary-grad-btn" onclick="handleLogin()">دخول إلى المنصة</button>
+      <button type="button" class="primary-grad-btn" onclick="handleLogin()">دخول إلى المنصة 🐋</button>
 
       <div class="login-note">
-        للتواصل أو الاستفسار مع المستر على واتساب: <strong>+20 112 796 2652</strong>
+        للاشتراك أو التواصل مع مستر ماجد علي على واتساب:
+        <a href="https://wa.me/201127962652" target="_blank" rel="noopener" dir="ltr">+20 112 796 2652</a>
       </div>
     </div>
   </section>
@@ -611,12 +667,12 @@
     <header class="topbar">
       <div class="wrap topbar-inner">
         <div class="brand-mini">
-          <div class="avatar-ring mini-avatar">
-            <img src="teacher.jpg" alt="صورة المستر" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-            <div class="avatar-fallback" style="display:none;">🧬</div>
+          <div class="teacher-frame mini-avatar">
+            <img src="teacher.jpg" alt="مستر ماجد علي" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="teacher-fallback" style="display:none;">🐋</div>
           </div>
           <div>
-            <h2>منصة الأحياء 🧬</h2>
+            <h2>مستر ماجد علي | حوت الأحياء 🐋</h2>
             <p id="welcomeStudent">أهلاً بك يا بطل</p>
           </div>
         </div>
@@ -626,16 +682,18 @@
 
     <main class="wrap">
       <section class="hero-card">
-        <div class="hero-teacher-box">
-          <div class="avatar-ring hero-avatar">
-            <img src="teacher.jpg" alt="صورة المستر" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-            <div class="avatar-fallback" style="display:none;">🧬</div>
-          </div>
+        <div class="teacher-frame hero-avatar">
+          <img src="teacher.jpg" alt="مستر ماجد علي - حوت الأحياء" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <div class="teacher-fallback" style="display:none;">🐋</div>
+          <span class="whale-pin">🐋 حوت الأحياء</span>
         </div>
-        <span class="pill-line">🧬 أحياء • 🔬 شرح عملي • 🧪 مراجعات وحل</span>
-        <h1 class="hero-title">منصة فيديوهات الأحياء للطلاب</h1>
-        <p class="hero-sub">افهم المنهج من الجذور، وتابع كل درس وفيديو بسهولة من موبايلك</p>
+
+        <span class="pill-line">🧬 أحياء • 🔬 شرح مبسط • 🧪 مراجعات وحل</span>
+        <h1 class="hero-title">أهلاً بك في منصة مستر ماجد علي حوت الأحياء</h1>
+        <p class="hero-sub">هتفهم كل حاجة في المنهج بشرح مبسط</p>
+
         <div class="hero-tags">
+          <span class="hero-tag">🐋 حوت الأحياء</span>
           <span class="hero-tag">🧬 DNA ووراثة</span>
           <span class="hero-tag">🔬 خلايا وأنسجة</span>
           <span class="hero-tag">🧪 تدريبات ومراجعات</span>
@@ -654,7 +712,7 @@
       </div>
 
       <div class="lessons-head">
-        <h3>الحصص والفيديوهات</h3>
+        <h3>حصص وفيديوهات مستر ماجد علي</h3>
         <span id="lessonsCount">0 حصة</span>
       </div>
 
@@ -664,7 +722,7 @@
     <nav class="bottom-nav">
       <div class="bottom-nav-inner">
         <button class="nav-tab active" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-          <span>🧬</span>
+          <span>🐋</span>
           <span>الحصص</span>
         </button>
         <a class="nav-tab" href="https://wa.me/201127962652" target="_blank" rel="noopener">
@@ -696,7 +754,7 @@
         unitLabel: 'الفصل الأول',
         icon: '🧬',
         title: 'الدرس الأول: تركيب الخلية والعضيات الحيوية',
-        desc: 'شرح تفصيلي لتركيب الخلية ووظائف العضيات مع رسومات توضيحية وأفكار أسئلة.',
+        desc: 'شرح مبسط لتركيب الخلية ووظائف العضيات مع رسومات توضيحية وأفكار أسئلة.',
         youtubeId: 'dQw4w9WgXcQ'
       },
       {
@@ -712,7 +770,7 @@
         unitLabel: 'مراجعات',
         icon: '🧪',
         title: 'مراجعة شاملة وحل أسئلة النظام الحديث',
-        desc: 'تجميع لأهم النقاط والمقارنات والأسئلة المتوقعة في الأحياء.',
+        desc: 'تجميع لأهم النقاط والمقارنات والأسئلة المتوقعة مع مستر ماجد علي.',
         youtubeId: 'dQw4w9WgXcQ'
       }
     ];
@@ -738,7 +796,7 @@
     function openPortal(student) {
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('portalApp').style.display = 'block';
-      document.getElementById('welcomeStudent').textContent = `أهلاً بك: ${student.fullName}`;
+      document.getElementById('welcomeStudent').textContent = `أهلاً بك يا ${student.fullName}`;
       renderLessons();
     }
 
@@ -775,11 +833,14 @@
 
       container.innerHTML = filtered
         .map((l) => {
-          const waMsg = encodeURIComponent(`السلام عليكم يا مستر، عندي سؤال بخصوص: ${l.title}`);
+          const waMsg = encodeURIComponent(`السلام عليكم يا مستر ماجد، عندي سؤال بخصوص: ${l.title}`);
           return `
             <article class="lesson-card">
               <div class="lesson-top">
-                <span class="unit-chip">${l.unitLabel}</span>
+                <div class="lesson-teacher-mini">
+                  <img src="teacher.jpg" alt="مستر ماجد علي" onerror="this.style.display='none'" />
+                  <span class="unit-chip">${l.unitLabel}</span>
+                </div>
                 <span class="bio-badge" aria-hidden="true">${l.icon || '🧬'}</span>
               </div>
               <h4 class="lesson-title">${l.title}</h4>
@@ -797,7 +858,7 @@
                   فتح على يوتيوب ↗
                 </a>
                 <a class="wa-lesson-btn" href="https://wa.me/${TEACHER_WHATSAPP}?text=${waMsg}" target="_blank" rel="noopener">
-                  اسأل المستر عن الحصة
+                  اسأل مستر ماجد عن الحصة
                 </a>
               </div>
             </article>
