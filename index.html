@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منصة المستر | الفيديوهات والشرح للطلاب</title>
+  <title>منصة الأحياء | الفيديوهات والشرح للطلاب</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -18,7 +18,7 @@
       --red-soft: rgba(225, 29, 72, 0.16);
       --text: #fdf4ff;
       --muted: #d8b4fe;
-      --border: rgba(192, 132, 252, 0.24);
+      --border: rgba(192, 132, 252, 0.25);
     }
 
     *, *::before, *::after {
@@ -35,15 +35,77 @@
     body {
       direction: rtl;
       font-family: 'Cairo', sans-serif;
-      background: radial-gradient(circle at top right, #2e1049 0%, #13081c 55%, #1c0916 100%);
+      background:
+        radial-gradient(circle at top right, rgba(147, 51, 234, 0.28) 0%, transparent 45%),
+        radial-gradient(circle at bottom left, rgba(225, 29, 72, 0.22) 0%, transparent 45%),
+        linear-gradient(180deg, #160921 0%, #110719 100%);
       color: var(--text);
       min-height: 100vh;
-      padding-bottom: 84px;
+      padding-bottom: 88px;
+      position: relative;
+      overflow-x: hidden;
     }
+
+    /* أشكال أحياء خفيفة في الخلفية */
+    .bio-bg-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0.08;
+      user-select: none;
+    }
+
+    .bio-glyph {
+      position: absolute;
+      font-size: 3.2rem;
+      filter: grayscale(15%);
+    }
+
+    .g1 { top: 8%; right: 6%; transform: rotate(-12deg); }
+    .g2 { top: 22%; left: 8%; font-size: 3.8rem; transform: rotate(15deg); }
+    .g3 { top: 48%; right: 4%; font-size: 3.5rem; transform: rotate(8deg); }
+    .g4 { top: 66%; left: 7%; font-size: 3.4rem; transform: rotate(-18deg); }
+    .g5 { bottom: 16%; right: 12%; font-size: 3rem; }
 
     .wrap {
       width: min(760px, 94%);
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Avatar helpers */
+    .avatar-ring {
+      position: relative;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      padding: 3px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
     }
 
     /* Login Screen */
@@ -53,34 +115,40 @@
       align-items: center;
       justify-content: center;
       padding: 20px 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .login-card {
       width: min(430px, 100%);
-      background: linear-gradient(180deg, #241036 0%, #180a24 100%);
+      background: linear-gradient(180deg, #251038 0%, #180a24 100%);
       border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 26px 20px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      padding: 24px 20px;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.5);
       text-align: center;
     }
 
-    .login-logo {
-      width: 66px;
-      height: 66px;
-      margin: 0 auto 12px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--purple), var(--red));
-      color: #ffffff;
-      display: grid;
-      place-items: center;
-      font-size: 1.5rem;
-      font-weight: 900;
-      border: 2px solid rgba(255, 255, 255, 0.35);
+    .login-photo {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 10px;
+      font-size: 2rem;
+    }
+
+    .bio-mini-strip {
+      display: inline-flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
     }
 
     .login-card h1 {
-      font-size: 1.35rem;
+      font-size: 1.32rem;
       font-weight: 900;
       margin-bottom: 4px;
       color: #ffffff;
@@ -89,7 +157,7 @@
     .login-card p {
       font-size: 0.85rem;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .field-box {
@@ -123,8 +191,8 @@
 
     .login-err {
       display: none;
-      background: rgba(225, 29, 72, 0.18);
-      border: 1px solid rgba(225, 29, 72, 0.5);
+      background: rgba(225, 29, 72, 0.2);
+      border: 1px solid rgba(225, 29, 72, 0.55);
       color: #fecdd3;
       padding: 9px 12px;
       border-radius: 10px;
@@ -144,11 +212,6 @@
       font-weight: 900;
       font-size: 0.96rem;
       cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    .primary-grad-btn:hover {
-      opacity: 0.94;
     }
 
     .login-note {
@@ -166,7 +229,7 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(19, 8, 28, 0.92);
+      background: rgba(19, 8, 28, 0.93);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       padding: 10px 0;
@@ -185,18 +248,10 @@
       gap: 10px;
     }
 
-    .mini-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--purple), var(--red));
-      color: #ffffff;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 0.92rem;
-      flex-shrink: 0;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+    .mini-avatar {
+      width: 48px;
+      height: 48px;
+      font-size: 1.2rem;
     }
 
     .brand-mini h2 {
@@ -206,7 +261,7 @@
     }
 
     .brand-mini p {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       color: var(--muted);
     }
 
@@ -225,16 +280,31 @@
     /* Hero Card */
     .hero-card {
       margin-top: 14px;
-      background: linear-gradient(180deg, #27123b 0%, #190b26 100%);
+      background: linear-gradient(180deg, #28113d 0%, #190a27 100%);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 20px 16px;
       text-align: center;
     }
 
+    .hero-teacher-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hero-avatar {
+      width: 96px;
+      height: 96px;
+      font-size: 2.2rem;
+      box-shadow: 0 10px 24px rgba(225, 29, 72, 0.25);
+    }
+
     .pill-line {
       display: inline-block;
-      background: linear-gradient(135deg, rgba(147, 51, 234, 0.28), rgba(225, 29, 72, 0.28));
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(225, 29, 72, 0.3));
       border: 1px solid var(--border);
       color: #f5d0fe;
       padding: 4px 14px;
@@ -245,7 +315,7 @@
     }
 
     .hero-title {
-      font-size: 1.45rem;
+      font-size: 1.42rem;
       font-weight: 900;
       color: #ffffff;
       margin-bottom: 6px;
@@ -350,7 +420,7 @@
       border-radius: 16px;
       padding: 14px;
       margin-bottom: 12px;
-      transition: transform 0.18s ease, background 0.18s ease;
+      transition: background 0.18s ease;
     }
 
     .lesson-card:hover {
@@ -372,6 +442,11 @@
       font-weight: 800;
       padding: 3px 10px;
       border-radius: 8px;
+    }
+
+    .bio-badge {
+      font-size: 1.05rem;
+      opacity: 0.9;
     }
 
     .lesson-title {
@@ -407,11 +482,30 @@
       border: 0;
     }
 
+    .lesson-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .watch-ext-btn {
       display: inline-block;
       background: var(--surface-2);
       border: 1px solid var(--border);
       color: #f5d0fe;
+      text-decoration: none;
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .wa-lesson-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      color: #ffffff;
       text-decoration: none;
       padding: 7px 13px;
       border-radius: 10px;
@@ -446,7 +540,7 @@
       color: var(--muted);
       font-family: inherit;
       font-weight: 800;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       padding: 6px;
       border-radius: 10px;
       cursor: pointer;
@@ -465,12 +559,32 @@
 </head>
 <body>
 
+  <!-- أشكال أحياء في الخلفية -->
+  <div class="bio-bg-layer" aria-hidden="true">
+    <span class="bio-glyph g1">🧬</span>
+    <span class="bio-glyph g2">🔬</span>
+    <span class="bio-glyph g3">🧪</span>
+    <span class="bio-glyph g4">🦠</span>
+    <span class="bio-glyph g5">🌿</span>
+  </div>
+
   <!-- شاشة تسجيل الدخول -->
   <section class="login-screen" id="loginScreen">
     <div class="login-card">
-      <div class="login-logo">🎓</div>
-      <h1>منصة المستر التعليمية</h1>
-      <p>أدخل اسم المستخدم وكلمة المرور الخاصة بك لمشاهدة الحصص</p>
+      <div class="avatar-ring login-photo">
+        <img src="teacher.jpg" alt="صورة المستر" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+        <div class="avatar-fallback" style="display:none;">🧬</div>
+      </div>
+
+      <div class="bio-mini-strip" aria-hidden="true">
+        <span>🧬</span>
+        <span>🔬</span>
+        <span>🧪</span>
+        <span>🦠</span>
+      </div>
+
+      <h1>منصة الأحياء التعليمية</h1>
+      <p>أدخل اسم المستخدم وكلمة المرور لمشاهدة حصص وشرح الأحياء</p>
 
       <div class="login-err" id="loginErr">اسم المستخدم أو كلمة المرور غير صحيحة</div>
 
@@ -487,7 +601,7 @@
       <button type="button" class="primary-grad-btn" onclick="handleLogin()">دخول إلى المنصة</button>
 
       <div class="login-note">
-        مخصصة للطلاب المشتركين فقط. يُفضّل رفع الفيديوهات كـ Unlisted على يوتيوب لعدم ظهورها في البحث العام.
+        للتواصل أو الاستفسار مع المستر على واتساب: <strong>+20 112 796 2652</strong>
       </div>
     </div>
   </section>
@@ -497,9 +611,12 @@
     <header class="topbar">
       <div class="wrap topbar-inner">
         <div class="brand-mini">
-          <div class="mini-circle">أحياء</div>
+          <div class="avatar-ring mini-avatar">
+            <img src="teacher.jpg" alt="صورة المستر" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="avatar-fallback" style="display:none;">🧬</div>
+          </div>
           <div>
-            <h2>منصة المستر</h2>
+            <h2>منصة الأحياء 🧬</h2>
             <p id="welcomeStudent">أهلاً بك يا بطل</p>
           </div>
         </div>
@@ -509,24 +626,31 @@
 
     <main class="wrap">
       <section class="hero-card">
-        <span class="pill-line">شرح • مراجعات • حل امتحانات</span>
-        <h1 class="hero-title">منصة الفيديوهات التعليمية</h1>
-        <p class="hero-sub">تابع دروسك أول بأول، وراجع كل جزئية في المنهج بتركيز</p>
+        <div class="hero-teacher-box">
+          <div class="avatar-ring hero-avatar">
+            <img src="teacher.jpg" alt="صورة المستر" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="avatar-fallback" style="display:none;">🧬</div>
+          </div>
+        </div>
+        <span class="pill-line">🧬 أحياء • 🔬 شرح عملي • 🧪 مراجعات وحل</span>
+        <h1 class="hero-title">منصة فيديوهات الأحياء للطلاب</h1>
+        <p class="hero-sub">افهم المنهج من الجذور، وتابع كل درس وفيديو بسهولة من موبايلك</p>
         <div class="hero-tags">
-          <span class="hero-tag">🎥 فيديوهات عالية الجودة</span>
-          <span class="hero-tag">🔒 محتوى مخصص للمشتركين</span>
+          <span class="hero-tag">🧬 DNA ووراثة</span>
+          <span class="hero-tag">🔬 خلايا وأنسجة</span>
+          <span class="hero-tag">🧪 تدريبات ومراجعات</span>
         </div>
       </section>
 
       <div class="search-box">
-        <input type="search" id="searchLesson" placeholder="ابحث باسم الدرس أو الفصل..." oninput="renderLessons()" />
+        <input type="search" id="searchLesson" placeholder="ابحث باسم الدرس أو الفصل في الأحياء..." oninput="renderLessons()" />
       </div>
 
       <div class="cat-pills">
         <button class="cat-pill active" data-unit="all" onclick="setUnit('all')">الكل</button>
-        <button class="cat-pill" data-unit="unit1" onclick="setUnit('unit1')">الفصل الأول</button>
-        <button class="cat-pill" data-unit="unit2" onclick="setUnit('unit2')">الفصل الثاني</button>
-        <button class="cat-pill" data-unit="rev" onclick="setUnit('rev')">مراجعات</button>
+        <button class="cat-pill" data-unit="unit1" onclick="setUnit('unit1')">🧬 الفصل الأول</button>
+        <button class="cat-pill" data-unit="unit2" onclick="setUnit('unit2')">🔬 الفصل الثاني</button>
+        <button class="cat-pill" data-unit="rev" onclick="setUnit('rev')">🧪 مراجعات</button>
       </div>
 
       <div class="lessons-head">
@@ -540,50 +664,55 @@
     <nav class="bottom-nav">
       <div class="bottom-nav-inner">
         <button class="nav-tab active" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-          <span>🎥</span>
+          <span>🧬</span>
           <span>الحصص</span>
         </button>
-        <a class="nav-tab" href="https://wa.me/201000000000" target="_blank" rel="noopener">
+        <a class="nav-tab" href="https://wa.me/201127962652" target="_blank" rel="noopener">
           <span>💬</span>
-          <span>تواصل مع المستر</span>
+          <span>واتساب المستر</span>
         </a>
         <button class="nav-tab" onclick="handleLogout()">
           <span>🚪</span>
-          <span>تسجيل خروج</span>
+          <span>خروج</span>
         </button>
       </div>
     </nav>
   </div>
 
   <script>
-    // 1) قائمة الطلاب المسموح لهم بالدخول (عدّل أو زوّد سطور هنا بسهولة)
+    const TEACHER_WHATSAPP = '201127962652';
+
+    // قائمة الطلاب المسموح لهم بالدخول
     const STUDENTS_USERS = [
       { username: 'student1', password: '111', fullName: 'أحمد محمد' },
       { username: 'student2', password: '222', fullName: 'محمود علي' },
       { username: 'eiad', password: '123', fullName: 'إياد كمال' }
     ];
 
-    // 2) قائمة الفيديوهات والدروس (حط كود فيديو يوتيوب youtubeId لكل حصة)
+    // قائمة الفيديوهات والدروس (غيّر youtubeId لكل درس)
     const LESSONS = [
       {
         unit: 'unit1',
         unitLabel: 'الفصل الأول',
-        title: 'الدرس الأول: مقدمة وشرح الأساسيات',
-        desc: 'شرح تفصيلي لأهم أفكار الدرس الأول مع تطبيقات وأسئلة نظام حديث.',
+        icon: '🧬',
+        title: 'الدرس الأول: تركيب الخلية والعضيات الحيوية',
+        desc: 'شرح تفصيلي لتركيب الخلية ووظائف العضيات مع رسومات توضيحية وأفكار أسئلة.',
         youtubeId: 'dQw4w9WgXcQ'
       },
       {
         unit: 'unit2',
         unitLabel: 'الفصل الثاني',
-        title: 'الدرس الثاني: شرح الجزء العملي والمسائل',
-        desc: 'خطوات الحل السريع لأفكار الامتحانات المتوقعة.',
+        icon: '🔬',
+        title: 'الدرس الثاني: التمثيل الغذائي والإنزيمات',
+        desc: 'فهم آلية عمل الإنزيمات والعوامل المؤثرة عليها وحل المسائل والأسئلة.',
         youtubeId: 'dQw4w9WgXcQ'
       },
       {
         unit: 'rev',
         unitLabel: 'مراجعات',
-        title: 'مراجعة شاملة وحل امتحان شامل',
-        desc: 'مراجعة مركزة لأهم النقاط قبل الامتحان.',
+        icon: '🧪',
+        title: 'مراجعة شاملة وحل أسئلة النظام الحديث',
+        desc: 'تجميع لأهم النقاط والمقارنات والأسئلة المتوقعة في الأحياء.',
         youtubeId: 'dQw4w9WgXcQ'
       }
     ];
@@ -645,32 +774,38 @@
       }
 
       container.innerHTML = filtered
-        .map(
-          (l) => `
-          <article class="lesson-card">
-            <div class="lesson-top">
-              <span class="unit-chip">${l.unitLabel}</span>
-            </div>
-            <h4 class="lesson-title">${l.title}</h4>
-            <p class="lesson-desc">${l.desc}</p>
-            <div class="video-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/${l.youtubeId}"
-                title="${l.title}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-            </div>
-            <a class="watch-ext-btn" href="https://www.youtube.com/watch?v=${l.youtubeId}" target="_blank" rel="noopener">
-              فتح الفيديو على يوتيوب ↗
-            </a>
-          </article>
-        `
-        )
+        .map((l) => {
+          const waMsg = encodeURIComponent(`السلام عليكم يا مستر، عندي سؤال بخصوص: ${l.title}`);
+          return `
+            <article class="lesson-card">
+              <div class="lesson-top">
+                <span class="unit-chip">${l.unitLabel}</span>
+                <span class="bio-badge" aria-hidden="true">${l.icon || '🧬'}</span>
+              </div>
+              <h4 class="lesson-title">${l.title}</h4>
+              <p class="lesson-desc">${l.desc}</p>
+              <div class="video-wrap">
+                <iframe
+                  src="https://www.youtube.com/embed/${l.youtubeId}"
+                  title="${l.title}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <div class="lesson-actions">
+                <a class="watch-ext-btn" href="https://www.youtube.com/watch?v=${l.youtubeId}" target="_blank" rel="noopener">
+                  فتح على يوتيوب ↗
+                </a>
+                <a class="wa-lesson-btn" href="https://wa.me/${TEACHER_WHATSAPP}?text=${waMsg}" target="_blank" rel="noopener">
+                  اسأل المستر عن الحصة
+                </a>
+              </div>
+            </article>
+          `;
+        })
         .join('');
     }
 
-    // استرجاع الجلسة تلقائيًا لو الطالب عمل تحديث للصفحة
     const saved = sessionStorage.getItem('loggedStudent');
     if (saved) {
       openPortal(JSON.parse(saved));
