@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصة المستر | الفيديوهات والشرح للطلاب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #13081c;
+      --surface: #1f0e2e;
+      --surface-2: #2b1440;
+      --purple: #9333ea;
+      --purple-light: #c084fc;
+      --red: #e11d48;
+      --red-soft: rgba(225, 29, 72, 0.16);
+      --text: #fdf4ff;
+      --muted: #d8b4fe;
+      --border: rgba(192, 132, 252, 0.24);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      direction: rtl;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      direction: rtl;
+      font-family: 'Cairo', sans-serif;
+      background: radial-gradient(circle at top right, #2e1049 0%, #13081c 55%, #1c0916 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 84px;
+    }
+
+    .wrap {
+      width: min(760px, 94%);
+      margin: 0 auto;
+    }
+
+    /* Login Screen */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 14px;
+    }
+
+    .login-card {
+      width: min(430px, 100%);
+      background: linear-gradient(180deg, #241036 0%, #180a24 100%);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px 20px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      text-align: center;
+    }
+
+    .login-logo {
+      width: 66px;
+      height: 66px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      font-weight: 900;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .login-card h1 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+
+    .login-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .field-box {
+      text-align: right;
+      margin-bottom: 12px;
+    }
+
+    .field-box label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+      color: var(--text);
+    }
+
+    .field-box input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 11px 13px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.92rem;
+    }
+
+    .field-box input:focus {
+      outline: none;
+      border-color: var(--red);
+    }
+
+    .login-err {
+      display: none;
+      background: rgba(225, 29, 72, 0.18);
+      border: 1px solid rgba(225, 29, 72, 0.5);
+      color: #fecdd3;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .primary-grad-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      color: #ffffff;
+      border: none;
+      border-radius: 13px;
+      padding: 12px;
+      font-family: inherit;
+      font-weight: 900;
+      font-size: 0.96rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .primary-grad-btn:hover {
+      opacity: 0.94;
+    }
+
+    .login-note {
+      margin-top: 14px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.55;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 9px 11px;
+      border-radius: 10px;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(19, 8, 28, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mini-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 0.92rem;
+      flex-shrink: 0;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .brand-mini h2 {
+      font-size: 1rem;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .brand-mini p {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .logout-btn {
+      background: var(--red-soft);
+      border: 1px solid rgba(225, 29, 72, 0.45);
+      color: #fecdd3;
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    /* Hero Card */
+    .hero-card {
+      margin-top: 14px;
+      background: linear-gradient(180deg, #27123b 0%, #190b26 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .pill-line {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.28), rgba(225, 29, 72, 0.28));
+      border: 1px solid var(--border);
+      color: #f5d0fe;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero-tags {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .hero-tag {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: #ffffff;
+      padding: 5px 11px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* Search & Category Pills */
+    .search-box {
+      margin-top: 14px;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 11px 14px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.92rem;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--red);
+    }
+
+    .cat-pills {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .cat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 6px;
+      border-radius: 11px;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+
+    .cat-pill.active {
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    /* Lessons List */
+    .lessons-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 18px 0 10px;
+    }
+
+    .lessons-head h3 {
+      font-size: 1.12rem;
+      font-weight: 900;
+    }
+
+    .lessons-head span {
+      background: var(--red-soft);
+      border: 1px solid rgba(225, 29, 72, 0.4);
+      color: #fecdd3;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .lesson-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .lesson-card:hover {
+      background: var(--surface-2);
+    }
+
+    .lesson-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .unit-chip {
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      color: #ffffff;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 8px;
+    }
+
+    .lesson-title {
+      font-size: 1.02rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .lesson-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      line-height: 1.55;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #0b0410;
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .watch-ext-btn {
+      display: inline-block;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: #f5d0fe;
+      text-decoration: none;
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(19, 8, 28, 0.96);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 8px 0;
+    }
+
+    .bottom-nav-inner {
+      width: min(760px, 96%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .nav-tab {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 0.84rem;
+      padding: 6px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+    }
+
+    .nav-tab.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.35), rgba(225, 29, 72, 0.35));
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاشة تسجيل الدخول -->
+  <section class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">🎓</div>
+      <h1>منصة المستر التعليمية</h1>
+      <p>أدخل اسم المستخدم وكلمة المرور الخاصة بك لمشاهدة الحصص</p>
+
+      <div class="login-err" id="loginErr">اسم المستخدم أو كلمة المرور غير صحيحة</div>
+
+      <div class="field-box">
+        <label for="userInput">اسم المستخدم (Username)</label>
+        <input type="text" id="userInput" placeholder="اكتب اليوزر الخاص بك" autocomplete="username" />
+      </div>
+
+      <div class="field-box">
+        <label for="passInput">كلمة المرور (Password)</label>
+        <input type="password" id="passInput" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+
+      <button type="button" class="primary-grad-btn" onclick="handleLogin()">دخول إلى المنصة</button>
+
+      <div class="login-note">
+        مخصصة للطلاب المشتركين فقط. يُفضّل رفع الفيديوهات كـ Unlisted على يوتيوب لعدم ظهورها في البحث العام.
+      </div>
+    </div>
+  </section>
+
+  <!-- واجهة المنصة بعد الدخول -->
+  <div id="portalApp" style="display:none;">
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <div class="brand-mini">
+          <div class="mini-circle">أحياء</div>
+          <div>
+            <h2>منصة المستر</h2>
+            <p id="welcomeStudent">أهلاً بك يا بطل</p>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">خروج</button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero-card">
+        <span class="pill-line">شرح • مراجعات • حل امتحانات</span>
+        <h1 class="hero-title">منصة الفيديوهات التعليمية</h1>
+        <p class="hero-sub">تابع دروسك أول بأول، وراجع كل جزئية في المنهج بتركيز</p>
+        <div class="hero-tags">
+          <span class="hero-tag">🎥 فيديوهات عالية الجودة</span>
+          <span class="hero-tag">🔒 محتوى مخصص للمشتركين</span>
+        </div>
+      </section>
+
+      <div class="search-box">
+        <input type="search" id="searchLesson" placeholder="ابحث باسم الدرس أو الفصل..." oninput="renderLessons()" />
+      </div>
+
+      <div class="cat-pills">
+        <button class="cat-pill active" data-unit="all" onclick="setUnit('all')">الكل</button>
+        <button class="cat-pill" data-unit="unit1" onclick="setUnit('unit1')">الفصل الأول</button>
+        <button class="cat-pill" data-unit="unit2" onclick="setUnit('unit2')">الفصل الثاني</button>
+        <button class="cat-pill" data-unit="rev" onclick="setUnit('rev')">مراجعات</button>
+      </div>
+
+      <div class="lessons-head">
+        <h3>الحصص والفيديوهات</h3>
+        <span id="lessonsCount">0 حصة</span>
+      </div>
+
+      <div id="lessonsList"></div>
+    </main>
+
+    <nav class="bottom-nav">
+      <div class="bottom-nav-inner">
+        <button class="nav-tab active" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span>🎥</span>
+          <span>الحصص</span>
+        </button>
+        <a class="nav-tab" href="https://wa.me/201000000000" target="_blank" rel="noopener">
+          <span>💬</span>
+          <span>تواصل مع المستر</span>
+        </a>
+        <button class="nav-tab" onclick="handleLogout()">
+          <span>🚪</span>
+          <span>تسجيل خروج</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    // 1) قائمة الطلاب المسموح لهم بالدخول (عدّل أو زوّد سطور هنا بسهولة)
+    const STUDENTS_USERS = [
+      { username: 'student1', password: '111', fullName: 'أحمد محمد' },
+      { username: 'student2', password: '222', fullName: 'محمود علي' },
+      { username: 'eiad', password: '123', fullName: 'إياد كمال' }
+    ];
+
+    // 2) قائمة الفيديوهات والدروس (حط كود فيديو يوتيوب youtubeId لكل حصة)
+    const LESSONS = [
+      {
+        unit: 'unit1',
+        unitLabel: 'الفصل الأول',
+        title: 'الدرس الأول: مقدمة وشرح الأساسيات',
+        desc: 'شرح تفصيلي لأهم أفكار الدرس الأول مع تطبيقات وأسئلة نظام حديث.',
+        youtubeId: 'dQw4w9WgXcQ'
+      },
+      {
+        unit: 'unit2',
+        unitLabel: 'الفصل الثاني',
+        title: 'الدرس الثاني: شرح الجزء العملي والمسائل',
+        desc: 'خطوات الحل السريع لأفكار الامتحانات المتوقعة.',
+        youtubeId: 'dQw4w9WgXcQ'
+      },
+      {
+        unit: 'rev',
+        unitLabel: 'مراجعات',
+        title: 'مراجعة شاملة وحل امتحان شامل',
+        desc: 'مراجعة مركزة لأهم النقاط قبل الامتحان.',
+        youtubeId: 'dQw4w9WgXcQ'
+      }
+    ];
+
+    let activeUnit = 'all';
+
+    function handleLogin() {
+      const u = document.getElementById('userInput').value.trim();
+      const p = document.getElementById('passInput').value.trim();
+      const errBox = document.getElementById('loginErr');
+
+      const matched = STUDENTS_USERS.find((s) => s.username === u && s.password === p);
+      if (!matched) {
+        errBox.style.display = 'block';
+        return;
+      }
+
+      errBox.style.display = 'none';
+      sessionStorage.setItem('loggedStudent', JSON.stringify(matched));
+      openPortal(matched);
+    }
+
+    function openPortal(student) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('portalApp').style.display = 'block';
+      document.getElementById('welcomeStudent').textContent = `أهلاً بك: ${student.fullName}`;
+      renderLessons();
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem('loggedStudent');
+      document.getElementById('portalApp').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('passInput').value = '';
+    }
+
+    function setUnit(unit) {
+      activeUnit = unit;
+      document.querySelectorAll('.cat-pill').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.unit === unit);
+      });
+      renderLessons();
+    }
+
+    function renderLessons() {
+      const q = document.getElementById('searchLesson').value.trim();
+      const filtered = LESSONS.filter((l) => {
+        const matchUnit = activeUnit === 'all' || l.unit === activeUnit;
+        const matchText = !q || l.title.includes(q) || l.desc.includes(q) || l.unitLabel.includes(q);
+        return matchUnit && matchText;
+      });
+
+      document.getElementById('lessonsCount').textContent = `${filtered.length} حصة`;
+      const container = document.getElementById('lessonsList');
+
+      if (!filtered.length) {
+        container.innerHTML = `<div class="lesson-card" style="text-align:center; color:var(--muted);">لا توجد حصص مطابقة للبحث الحالي</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered
+        .map(
+          (l) => `
+          <article class="lesson-card">
+            <div class="lesson-top">
+              <span class="unit-chip">${l.unitLabel}</span>
+            </div>
+            <h4 class="lesson-title">${l.title}</h4>
+            <p class="lesson-desc">${l.desc}</p>
+            <div class="video-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/${l.youtubeId}"
+                title="${l.title}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <a class="watch-ext-btn" href="https://www.youtube.com/watch?v=${l.youtubeId}" target="_blank" rel="noopener">
+              فتح الفيديو على يوتيوب ↗
+            </a>
+          </article>
+        `
+        )
+        .join('');
+    }
+
+    // استرجاع الجلسة تلقائيًا لو الطالب عمل تحديث للصفحة
+    const saved = sessionStorage.getItem('loggedStudent');
+    if (saved) {
+      openPortal(JSON.parse(saved));
+    }
+  </script>
+</body>
+</html>
