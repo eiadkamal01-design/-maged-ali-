@@ -48,7 +48,6 @@
       overflow-x: hidden;
     }
 
-    /* أشكال أحياء وحوت خفيفة في الخلفية */
     .bio-bg-layer {
       position: fixed;
       inset: 0;
@@ -77,7 +76,6 @@
       z-index: 1;
     }
 
-    /* إطار صورة المستر */
     .teacher-frame {
       position: relative;
       border-radius: 50%;
@@ -124,7 +122,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     }
 
-    /* شاشة تسجيل الدخول (من بره) */
+    /* Login Screen */
     .login-screen {
       min-height: 100vh;
       display: flex;
@@ -210,18 +208,18 @@
       color: var(--text);
     }
 
-    .field-box input {
+    .field-box input, .field-box select, .field-box textarea {
       width: 100%;
       background: #f8fafc;
       border: 1.5px solid #cbd5e1;
       border-radius: 12px;
-      padding: 11px 13px;
+      padding: 10px 12px;
       color: var(--text);
       font-family: inherit;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
-    .field-box input:focus {
+    .field-box input:focus, .field-box select:focus, .field-box textarea:focus {
       outline: none;
       border-color: var(--blue);
       background: #ffffff;
@@ -248,7 +246,7 @@
       padding: 12px;
       font-family: inherit;
       font-weight: 900;
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
     }
@@ -270,12 +268,12 @@
       text-decoration: none;
     }
 
-    /* الشريط العلوي داخل المنصة */
+    /* Topbar */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1.5px solid var(--border);
       padding: 9px 0;
@@ -285,7 +283,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
     }
 
     .brand-mini {
@@ -295,37 +293,113 @@
     }
 
     .mini-avatar {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       padding: 2.5px;
       font-size: 1.2rem;
     }
 
     .brand-mini h2 {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       font-weight: 900;
       color: var(--blue-deep);
     }
 
     .brand-mini p {
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: var(--green-dark);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .admin-toggle-btn {
+      display: none;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      border: none;
+      color: #ffffff;
+      padding: 7px 11px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 0.78rem;
+      cursor: pointer;
     }
 
     .logout-btn {
       background: #fef2f2;
       border: 1px solid #fecaca;
       color: #b91c1c;
-      padding: 7px 12px;
+      padding: 7px 11px;
       border-radius: 10px;
       font-family: inherit;
       font-weight: 800;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       cursor: pointer;
     }
 
-    /* كارت المستر الكبير داخل المنصة */
+    /* لوحة تحكم المستر */
+    .admin-panel {
+      display: none;
+      margin-top: 14px;
+      background: #ffffff;
+      border: 2px solid var(--green);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .admin-panel h3 {
+      font-size: 1.08rem;
+      font-weight: 900;
+      color: var(--blue-deep);
+      margin-bottom: 4px;
+    }
+
+    .admin-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .admin-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .admin-box h4 {
+      font-size: 0.94rem;
+      font-weight: 900;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+
+    .admin-msg {
+      display: none;
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      color: #065f46;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    /* Hero Card */
     .hero-card {
       margin-top: 14px;
       background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 65%, #ecfdf5 100%);
@@ -386,7 +460,7 @@
       font-weight: 800;
     }
 
-    /* البحث والتبويبات */
+    /* Search & Tabs */
     .search-box {
       margin-top: 14px;
     }
@@ -433,7 +507,7 @@
       border-color: transparent;
     }
 
-    /* كروت الحصص */
+    /* Lessons */
     .lessons-head {
       display: flex;
       align-items: center;
@@ -566,7 +640,7 @@
       font-weight: 800;
     }
 
-    /* الشريط السفلي الثابت */
+    /* Bottom Nav */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -612,7 +686,6 @@
 </head>
 <body>
 
-  <!-- أشكال أحياء وحوت في الخلفية -->
   <div class="bio-bg-layer" aria-hidden="true">
     <span class="bio-glyph g1">🐋</span>
     <span class="bio-glyph g2">🧬</span>
@@ -621,7 +694,7 @@
     <span class="bio-glyph g5">🌿</span>
   </div>
 
-  <!-- شاشة تسجيل الدخول (من بره) -->
+  <!-- شاشة تسجيل الدخول -->
   <section class="login-screen" id="loginScreen">
     <div class="login-card">
       <div class="teacher-frame login-photo">
@@ -662,7 +735,7 @@
     </div>
   </section>
 
-  <!-- واجهة المنصة بعد الدخول -->
+  <!-- واجهة المنصة -->
   <div id="portalApp" style="display:none;">
     <header class="topbar">
       <div class="wrap topbar-inner">
@@ -676,11 +749,66 @@
             <p id="welcomeStudent">أهلاً بك يا بطل</p>
           </div>
         </div>
-        <button class="logout-btn" onclick="handleLogout()">خروج</button>
+        <div class="top-actions">
+          <button class="admin-toggle-btn" id="adminToggleBtn" onclick="toggleAdminPanel()">لوحة المستر ⚙️</button>
+          <button class="logout-btn" onclick="handleLogout()">خروج</button>
+        </div>
       </div>
     </header>
 
     <main class="wrap">
+      <!-- لوحة تحكم المستر (تظهر فقط عند الدخول بيوزر المستر) -->
+      <section class="admin-panel" id="adminPanel">
+        <h3>⚙️ لوحة تحكم مستر ماجد علي</h3>
+        <p class="admin-sub">من هنا تقدر تضيف حصة جديدة بلينك يوتيوب مباشرة أو تضيف طالب جديد. (ملاحظة: التعديل هنا بيظهر في نفس المتصفح؛ ولتثبيته لكل الطلاب بننقله في الكود أو Google Sheet).</p>
+
+        <div class="admin-grid">
+          <div class="admin-box">
+            <h4>🎥 إضافة حصة / فيديو جديد</h4>
+            <div class="field-box">
+              <label>القسم / الفصل</label>
+              <select id="newLessonUnit">
+                <option value="unit1">الفصل الأول</option>
+                <option value="unit2">الفصل الثاني</option>
+                <option value="rev">مراجعات</option>
+              </select>
+            </div>
+            <div class="field-box">
+              <label>عنوان الحصة</label>
+              <input type="text" id="newLessonTitle" placeholder="مثال: الدرس الثالث - الدعامة والحركة" />
+            </div>
+            <div class="field-box">
+              <label>وصف مختصر للحصة</label>
+              <input type="text" id="newLessonDesc" placeholder="شرح مبسط لأهم أفكار الدرس وحل أسئلة" />
+            </div>
+            <div class="field-box">
+              <label>رابط فيديو اليوتيوب كامل</label>
+              <input type="url" id="newLessonUrl" placeholder="https://www.youtube.com/watch?v=..." />
+            </div>
+            <button type="button" class="primary-grad-btn" onclick="addNewLesson()">نشر الحصة الآن</button>
+            <div class="admin-msg" id="lessonAddedMsg">تمت إضافة الحصة بنجاح وظهرت في القائمة بالأسفل!</div>
+          </div>
+
+          <div class="admin-box">
+            <h4>👨‍🎓 إضافة طالب جديد</h4>
+            <div class="field-box">
+              <label>اسم الطالب</label>
+              <input type="text" id="newStudentName" placeholder="مثال: كريم محمود" />
+            </div>
+            <div class="field-box">
+              <label>يوزر الطالب</label>
+              <input type="text" id="newStudentUser" placeholder="مثال: karim1" />
+            </div>
+            <div class="field-box">
+              <label>باسورد الطالب</label>
+              <input type="text" id="newStudentPass" placeholder="مثال: 5566" />
+            </div>
+            <button type="button" class="primary-grad-btn" onclick="addNewStudent()">حفظ بيانات الطالب</button>
+            <div class="admin-msg" id="studentAddedMsg">تمت إضافة الطالب بنجاح!</div>
+          </div>
+        </div>
+      </section>
+
       <section class="hero-card">
         <div class="teacher-frame hero-avatar">
           <img src="teacher.jpg" alt="مستر ماجد علي - حوت الأحياء" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
@@ -740,15 +868,23 @@
   <script>
     const TEACHER_WHATSAPP = '201127962652';
 
+    // حساب المستر للدخول وإدارة الحصص
+    const TEACHER_ACCOUNT = {
+      username: 'maged',
+      password: '2026',
+      fullName: 'مستر ماجد علي (حوت الأحياء)',
+      isAdmin: true
+    };
+
     // قائمة الطلاب المسموح لهم بالدخول
-    const STUDENTS_USERS = [
+    const DEFAULT_STUDENTS = [
       { username: 'student1', password: '111', fullName: 'أحمد محمد' },
       { username: 'student2', password: '222', fullName: 'محمود علي' },
       { username: 'eiad', password: '123', fullName: 'إياد كمال' }
     ];
 
-    // قائمة الفيديوهات والدروس (غيّر youtubeId لكل درس)
-    const LESSONS = [
+    // قائمة الفيديوهات والدروس الأساسية
+    const DEFAULT_LESSONS = [
       {
         unit: 'unit1',
         unitLabel: 'الفصل الأول',
@@ -775,12 +911,28 @@
       }
     ];
 
+    let STUDENTS_USERS = JSON.parse(localStorage.getItem('maged_students')) || DEFAULT_STUDENTS;
+    let LESSONS = JSON.parse(localStorage.getItem('maged_lessons')) || DEFAULT_LESSONS;
     let activeUnit = 'all';
+
+    function extractYoutubeId(urlOrId) {
+      const val = urlOrId.trim();
+      const regExp = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+      const match = val.match(regExp);
+      return match ? match[1] : val;
+    }
 
     function handleLogin() {
       const u = document.getElementById('userInput').value.trim();
       const p = document.getElementById('passInput').value.trim();
       const errBox = document.getElementById('loginErr');
+
+      if (u === TEACHER_ACCOUNT.username && p === TEACHER_ACCOUNT.password) {
+        errBox.style.display = 'none';
+        sessionStorage.setItem('loggedStudent', JSON.stringify(TEACHER_ACCOUNT));
+        openPortal(TEACHER_ACCOUNT);
+        return;
+      }
 
       const matched = STUDENTS_USERS.find((s) => s.username === u && s.password === p);
       if (!matched) {
@@ -793,11 +945,72 @@
       openPortal(matched);
     }
 
-    function openPortal(student) {
+    function openPortal(user) {
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('portalApp').style.display = 'block';
-      document.getElementById('welcomeStudent').textContent = `أهلاً بك يا ${student.fullName}`;
+      document.getElementById('welcomeStudent').textContent = user.isAdmin
+        ? `مرحباً ${user.fullName}`
+        : `أهلاً بك يا ${user.fullName}`;
+
+      const adminBtn = document.getElementById('adminToggleBtn');
+      const adminPanel = document.getElementById('adminPanel');
+      if (user.isAdmin) {
+        adminBtn.style.display = 'inline-block';
+        adminPanel.style.display = 'block';
+      } else {
+        adminBtn.style.display = 'none';
+        adminPanel.style.display = 'none';
+      }
+
       renderLessons();
+    }
+
+    function toggleAdminPanel() {
+      const panel = document.getElementById('adminPanel');
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function addNewLesson() {
+      const unit = document.getElementById('newLessonUnit').value;
+      const title = document.getElementById('newLessonTitle').value.trim();
+      const desc = document.getElementById('newLessonDesc').value.trim();
+      const rawUrl = document.getElementById('newLessonUrl').value.trim();
+
+      if (!title || !rawUrl) return;
+
+      const labels = { unit1: 'الفصل الأول', unit2: 'الفصل الثاني', rev: 'مراجعات' };
+      const icons = { unit1: '🧬', unit2: '🔬', rev: '🧪' };
+
+      LESSONS.unshift({
+        unit,
+        unitLabel: labels[unit] || 'حصة جديدة',
+        icon: icons[unit] || '🧬',
+        title,
+        desc: desc || 'شرح مبسط من مستر ماجد علي حوت الأحياء.',
+        youtubeId: extractYoutubeId(rawUrl)
+      });
+
+      localStorage.setItem('maged_lessons', JSON.stringify(LESSONS));
+      document.getElementById('newLessonTitle').value = '';
+      document.getElementById('newLessonDesc').value = '';
+      document.getElementById('newLessonUrl').value = '';
+      document.getElementById('lessonAddedMsg').style.display = 'block';
+      renderLessons();
+    }
+
+    function addNewStudent() {
+      const fullName = document.getElementById('newStudentName').value.trim();
+      const username = document.getElementById('newStudentUser').value.trim();
+      const password = document.getElementById('newStudentPass').value.trim();
+
+      if (!fullName || !username || !password) return;
+
+      STUDENTS_USERS.push({ username, password, fullName });
+      localStorage.setItem('maged_students', JSON.stringify(STUDENTS_USERS));
+      document.getElementById('newStudentName').value = '';
+      document.getElementById('newStudentUser').value = '';
+      document.getElementById('newStudentPass').value = '';
+      document.getElementById('studentAddedMsg').style.display = 'block';
     }
 
     function handleLogout() {
